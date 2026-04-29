@@ -15,7 +15,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank
     private String nombre;
@@ -24,7 +24,7 @@ public class Usuario {
     private String correo;
 
     @NotNull
-    private int numero;
+    private Long numero;
 
     @NotNull
     private boolean activo;

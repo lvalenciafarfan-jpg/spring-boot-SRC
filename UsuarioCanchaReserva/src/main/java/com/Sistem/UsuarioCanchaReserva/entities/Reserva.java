@@ -23,7 +23,7 @@ public class Reserva{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotNull
     private LocalDateTime fecha;

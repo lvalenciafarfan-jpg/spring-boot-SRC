@@ -18,7 +18,7 @@ public class Cancha {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank
     private String nombre;
@@ -27,7 +27,7 @@ public class Cancha {
     private String tipo;
 
     @NotNull
-    private int precioxhora;
+    private Long precioxhora;
 
     @NotNull
     private boolean disponible;
