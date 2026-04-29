@@ -10,12 +10,16 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
 @Data
 public class Reserva{
+
+    public Reserva(){};
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +30,18 @@ public class Reserva{
 
     @NotNull
     private LocalTime horaInicio;
-    
+
     @NotNull
     private LocalTime horaFinal;
 
     @Enumerated(EnumType.STRING)
     private EstadoReserva estado = EstadoReserva.ACTIVA;
+    
+    @ManyToOne
+    @JoinColumn(name = "cancha_id")
+    private Cancha cancha;
 
-
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 }

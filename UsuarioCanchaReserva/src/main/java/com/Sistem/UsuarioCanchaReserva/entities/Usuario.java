@@ -3,12 +3,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
+import java.util.List;
 
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Usuario {
+
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +28,7 @@ public class Usuario {
 
     @NotNull
     private boolean activo;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Reserva> reservas;
 }
