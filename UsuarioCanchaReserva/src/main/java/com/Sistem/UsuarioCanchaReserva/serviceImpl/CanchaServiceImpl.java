@@ -3,9 +3,11 @@ package com.Sistem.UsuarioCanchaReserva.serviceImpl;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
 import com.Sistem.UsuarioCanchaReserva.service.CanchaService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CanchaServiceImpl implements CanchaService {
 
     private final CanchaRepository canchaRepository;

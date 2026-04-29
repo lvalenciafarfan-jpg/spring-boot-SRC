@@ -19,7 +19,7 @@ import lombok.Data;
 @Data
 public class Reserva{
 
-    public Reserva(){};
+    public Reserva(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
