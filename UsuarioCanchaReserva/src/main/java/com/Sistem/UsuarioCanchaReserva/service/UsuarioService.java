@@ -1,5 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.service;
 import java.util.List;
+import java.util.Optional;
+
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 
 public interface UsuarioService {
@@ -7,7 +9,7 @@ public interface UsuarioService {
 
     List<Usuario> listarUsuarios();
 
-    Usuario getForId(Long id);
+    Optional<Usuario> getForId(Long id);
 
     Usuario activarUsuario(Long id);
 
