@@ -12,7 +12,7 @@ public interface CanchaService {
 
     Cancha listarPorId(Long id);
 
-    Cancha actualizarPrecioH(Long id);
+    Cancha actualizarPrecioH(Long id, Long nuevoPrecio);
 
     Cancha cambiarDisponibilidad(Long id);
 }

@@ -1,6 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.service;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import java.util.List;
+import java.util.Optional;
 
 public interface ReservaService {
 
@@ -8,7 +9,7 @@ public interface ReservaService {
 
     List<Reserva> listarReservas();
 
-    Reserva listarPorId(Long id);
+    Optional<Reserva> listarPorId(Long id);
 
     Reserva cancelarReserva(Long id);
 }

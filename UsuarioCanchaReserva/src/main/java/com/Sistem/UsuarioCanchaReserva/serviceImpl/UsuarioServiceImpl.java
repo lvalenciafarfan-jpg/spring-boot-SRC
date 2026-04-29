@@ -42,7 +42,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         usuario.setActivo(true);
-
         return usuarioRepository.save(usuario);
     }
 
@@ -56,7 +55,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         usuario.setActivo(false);
-
         return usuarioRepository.save(usuario);
     }
 }
