@@ -1,5 +1,6 @@
 package com.Sistem.UsuarioCanchaReserva.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +33,8 @@ public class Cancha {
     @NotNull
     private boolean disponible;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cancha")
     private List<Reserva> reservas; 
 }

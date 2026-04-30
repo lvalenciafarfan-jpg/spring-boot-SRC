@@ -67,7 +67,9 @@ public class ReservaServiceImpl implements ReservaService {
 
         reserva.setEstado(EstadoReserva.ACTIVA);
 
-        return reservaRepository.save(reserva);
+        Reserva guardada = reservaRepository.save(reserva);
+
+        return reservaRepository.findById(guardada.getId()).get();
     }
 
     @Override

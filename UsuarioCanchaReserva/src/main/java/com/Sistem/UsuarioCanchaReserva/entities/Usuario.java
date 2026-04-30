@@ -1,4 +1,5 @@
 package com.Sistem.UsuarioCanchaReserva.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class Usuario {
     @NotNull
     private boolean activo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Reserva> reservas;
 }

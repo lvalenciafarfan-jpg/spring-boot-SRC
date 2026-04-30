@@ -40,7 +40,7 @@ public class ReservaController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    
+
     @PutMapping("/{id}/cancelar")
     public ResponseEntity<?> cancelar(@PathVariable Long id){
         try {

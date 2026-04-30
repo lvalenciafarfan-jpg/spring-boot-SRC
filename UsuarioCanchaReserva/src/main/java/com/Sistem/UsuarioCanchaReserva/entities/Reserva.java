@@ -36,7 +36,7 @@ public class Reserva{
 
     @Enumerated(EnumType.STRING)
     private EstadoReserva estado = EstadoReserva.ACTIVA;
-    
+
     @ManyToOne
     @JoinColumn(name = "cancha_id")
     private Cancha cancha;
