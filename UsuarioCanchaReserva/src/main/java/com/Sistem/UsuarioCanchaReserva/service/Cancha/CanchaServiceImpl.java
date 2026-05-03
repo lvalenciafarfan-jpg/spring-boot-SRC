@@ -1,8 +1,7 @@
-package com.Sistem.UsuarioCanchaReserva.serviceImpl;
+package com.Sistem.UsuarioCanchaReserva.service.Cancha;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
-import com.Sistem.UsuarioCanchaReserva.service.CanchaService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

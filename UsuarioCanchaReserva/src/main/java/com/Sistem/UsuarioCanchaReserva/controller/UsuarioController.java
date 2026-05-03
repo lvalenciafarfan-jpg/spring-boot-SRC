@@ -1,9 +1,8 @@
 package com.Sistem.UsuarioCanchaReserva.controller;
 
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioRequest;
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioResponse;
-import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
-import com.Sistem.UsuarioCanchaReserva.service.UsuarioService;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
+import com.Sistem.UsuarioCanchaReserva.service.Usuario.UsuarioService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

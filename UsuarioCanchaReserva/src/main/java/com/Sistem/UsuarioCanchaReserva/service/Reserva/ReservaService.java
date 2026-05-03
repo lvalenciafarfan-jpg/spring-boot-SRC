@@ -1,4 +1,4 @@
-package com.Sistem.UsuarioCanchaReserva.service;
+package com.Sistem.UsuarioCanchaReserva.service.Reserva;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.controller;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
-import com.Sistem.UsuarioCanchaReserva.service.ReservaService;
+import com.Sistem.UsuarioCanchaReserva.service.Reserva.ReservaService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

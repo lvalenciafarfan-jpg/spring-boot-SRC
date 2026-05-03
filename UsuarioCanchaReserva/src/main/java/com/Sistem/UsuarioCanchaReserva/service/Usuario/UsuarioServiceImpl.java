@@ -1,14 +1,12 @@
-package com.Sistem.UsuarioCanchaReserva.serviceImpl;
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioRequest;
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioResponse;
+package com.Sistem.UsuarioCanchaReserva.service.Usuario;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import org.springframework.stereotype.Service;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 import com.Sistem.UsuarioCanchaReserva.repository.UsuarioRepository;
-import com.Sistem.UsuarioCanchaReserva.service.UsuarioService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {

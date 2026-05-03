@@ -1,4 +1,4 @@
-package com.Sistem.UsuarioCanchaReserva.dtos;
+package com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos;
 
 import lombok.Data;
 

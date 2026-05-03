@@ -1,10 +1,8 @@
-package com.Sistem.UsuarioCanchaReserva.service;
+package com.Sistem.UsuarioCanchaReserva.service.Usuario;
 import java.util.List;
-import java.util.Optional;
 
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioRequest;
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioResponse;
-import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 
 public interface UsuarioService {
     UsuarioResponse crearUsuario(UsuarioRequest usuario);

@@ -1,4 +1,4 @@
-package com.Sistem.UsuarioCanchaReserva.service;
+package com.Sistem.UsuarioCanchaReserva.service.Cancha;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 

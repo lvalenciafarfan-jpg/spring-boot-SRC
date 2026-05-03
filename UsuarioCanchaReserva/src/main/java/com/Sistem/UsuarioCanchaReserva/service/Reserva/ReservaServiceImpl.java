@@ -1,4 +1,4 @@
-package com.Sistem.UsuarioCanchaReserva.serviceImpl;
+package com.Sistem.UsuarioCanchaReserva.service.Reserva;
 
 import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
@@ -7,7 +7,6 @@ import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.repository.ReservaRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.UsuarioRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
-import com.Sistem.UsuarioCanchaReserva.service.ReservaService;
 
 import org.springframework.stereotype.Service;
 
