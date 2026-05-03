@@ -2,17 +2,19 @@ package com.Sistem.UsuarioCanchaReserva.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 
 public interface UsuarioService {
-    Usuario crearUsuario(Usuario usuario);
+    UsuarioResponse crearUsuario(UsuarioRequest usuario);
 
-    List<Usuario> listarUsuarios();
+    List<UsuarioResponse> listarUsuarios();
 
-    Optional<Usuario> getForId(Long id);
+    UsuarioResponse getForId(Long id);
 
-    Usuario activarUsuario(Long id);
+    UsuarioResponse activarUsuario(Long id);
 
-    Usuario desactivarUsuario(Long id);
+    UsuarioResponse desactivarUsuario(Long id);
 
 }

@@ -33,7 +33,6 @@ public class Cancha {
     @NotNull
     private boolean disponible;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "cancha")
     private List<Reserva> reservas; 
