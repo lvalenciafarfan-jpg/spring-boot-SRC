@@ -9,7 +9,7 @@ public interface UsuarioService {
 
     List<UsuarioResponse> listarUsuarios();
 
-    UsuarioResponse getForId(Long id);
+    UsuarioResponse obtenerPorId(Long id);
 
     UsuarioResponse activarUsuario(Long id);
 

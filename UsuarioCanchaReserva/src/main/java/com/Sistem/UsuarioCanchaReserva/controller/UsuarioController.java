@@ -32,7 +32,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public UsuarioResponse obtener(@PathVariable Long id){
-        return usuarioService.getForId(id);
+        return usuarioService.obtenerPorId(id);
     }
 
     @PutMapping("/{id}/activar")

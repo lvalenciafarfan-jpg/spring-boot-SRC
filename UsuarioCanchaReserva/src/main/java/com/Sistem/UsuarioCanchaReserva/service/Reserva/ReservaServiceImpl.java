@@ -6,11 +6,12 @@ import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
+import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoException;
+import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
 import com.Sistem.UsuarioCanchaReserva.mappers.ReservaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.ReservaRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.UsuarioRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,27 +33,42 @@ public class ReservaServiceImpl implements ReservaService {
         this.usuarioRepository = usuarioRepository;
         this.canchaRepository = canchaRepository;
     }
+    private Usuario obtenerUsuario(Long id){
+        return usuarioRepository.findById(id)
+                .orElseThrow(() ->
+                        new RecursoNoEncontradoException("Usuario no encontrado con id: " + id)
+                );
+    }
 
+    private Cancha obtenerCancha(Long id){
+        return canchaRepository.findById(id)
+                .orElseThrow(() ->
+                        new RecursoNoEncontradoException("Cancha no encontrada con id: " + id)
+                );
+    }
+
+    private Reserva obtenerReserva(Long id){
+        return reservaRepository.findById(id)
+                .orElseThrow(() ->
+                        new RecursoNoEncontradoException("Reserva no encontrada con id: " + id)
+                );
+    }
     @Override
     public ReservaResponse crearReserva(ReservaRequest reserva){
-
-        Usuario usuario = usuarioRepository.findById(reserva.getUsuarioId())
-                .orElseThrow(() -> new RuntimeException("Usuario no existe"));
+        Usuario usuario = obtenerUsuario(reserva.getUsuarioId());
 
         if(!usuario.isActivo()){
-            throw new RuntimeException("El usuario esta inactivo");
+            throw new ReglaNegocioException("El usuario esta inactivo");
         }
 
-        Cancha cancha = canchaRepository.findById(reserva.getCanchaId())
-                .orElseThrow(() -> new RuntimeException("Cancha no existe"));
-
+        Cancha cancha = obtenerCancha(reserva.getCanchaId());
 
         if (!cancha.isDisponible()) {
-            throw new RuntimeException("Cancha no disponible");
+            throw new ReglaNegocioException("Cancha no disponible");
         }
 
         if (!reserva.getHoraInicio().isBefore(reserva.getHoraFinal())) {
-            throw new RuntimeException("horaInicio debe ser menor que horaFin");
+            throw new ReglaNegocioException("horaInicio debe ser menor que horaFin");
         }
 
 
@@ -63,7 +79,7 @@ public class ReservaServiceImpl implements ReservaService {
         );
 
         if (conflicto) {
-            throw new RuntimeException("La cancha ya está reservada en ese horario");
+            throw new ReglaNegocioException("La cancha ya está reservada en ese horario");
         }
 
         Reserva guardado = ReservaMapper.toEntity(reserva);
@@ -87,19 +103,17 @@ public class ReservaServiceImpl implements ReservaService {
 
     @Override
     public ReservaResponse listarPorId(Long id) {
-        Reserva reserva = reservaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+        Reserva reserva = obtenerReserva(id);
 
         return ReservaMapper.toResponse(reserva);
     }
 
     @Override
     public ReservaResponse cancelarReserva(Long id) {
-        Reserva reserva = reservaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+        Reserva reserva = obtenerReserva(id);
 
         if (reserva.getEstado() == EstadoReserva.CANCELADA) {
-            throw new IllegalStateException("La reserva ya está cancelada");
+            throw new ReglaNegocioException("La reserva ya está cancelada");
         }
 
         reserva.setEstado(EstadoReserva.CANCELADA);
