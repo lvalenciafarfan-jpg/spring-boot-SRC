@@ -16,7 +16,7 @@ public class CanchaMapper {
         return cancha;
     }
 
-    public static CanchaResponse ResponseDtos(Cancha datos){
+    public static CanchaResponse toResponse(Cancha datos){
         CanchaResponse canchaResponse = new CanchaResponse();
         canchaResponse.setTipo(datos.getTipo());
         canchaResponse.setNombre(datos.getNombre());
