@@ -1,4 +1,4 @@
-package com.Sistem.UsuarioCanchaReserva;
+package com.Sistem.UsuarioCanchaReserva.enums;
 
 public enum EstadoReserva{
     ACTIVA,

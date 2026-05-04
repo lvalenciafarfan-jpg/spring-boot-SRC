@@ -1,6 +1,6 @@
 package com.Sistem.UsuarioCanchaReserva.mappers;
 
-import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
+import com.Sistem.UsuarioCanchaReserva.enums.EstadoReserva;
 import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;

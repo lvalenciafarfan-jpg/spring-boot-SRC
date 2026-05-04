@@ -54,6 +54,8 @@ public class CanchaServiceImpl implements CanchaService {
 
         cancha.setPrecioxhora(nuevoPrecio);
 
+        canchaRepository.save(cancha);
+
         return CanchaMapper.ResponseDtos(cancha);
     }
 
@@ -63,6 +65,8 @@ public class CanchaServiceImpl implements CanchaService {
                 .orElseThrow(() -> new RuntimeException("Cancha no encontrada"));
 
         cancha.setDisponible(!cancha.isDisponible());
+
+        canchaRepository.save(cancha);
 
         return CanchaMapper.ResponseDtos(cancha);
     }

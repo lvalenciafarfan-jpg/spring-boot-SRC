@@ -1,6 +1,6 @@
 package com.Sistem.UsuarioCanchaReserva.entities;
 
-import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
+import com.Sistem.UsuarioCanchaReserva.enums.EstadoReserva;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

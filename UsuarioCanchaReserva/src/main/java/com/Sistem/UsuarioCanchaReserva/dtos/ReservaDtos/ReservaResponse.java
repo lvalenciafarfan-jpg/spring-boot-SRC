@@ -1,6 +1,6 @@
 package com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos;
 
-import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
+import com.Sistem.UsuarioCanchaReserva.enums.EstadoReserva;
 import lombok.Data;
 
 import java.time.LocalDate;
