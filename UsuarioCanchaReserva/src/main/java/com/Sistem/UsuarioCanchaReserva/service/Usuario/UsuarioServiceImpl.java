@@ -1,6 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.service.Usuario;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
+import com.Sistem.UsuarioCanchaReserva.mappers.UsuarioMapper;
 import org.springframework.stereotype.Service;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
@@ -19,23 +20,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponse crearUsuario(UsuarioRequest request){
-        Usuario usuario = new Usuario();
-        usuario.setNombre(usuario.getNombre());
-        usuario.setCorreo(usuario.getCorreo());
-        usuario.setNumero(usuario.getNumero());
-        usuario.setActivo(usuario.isActivo());
+        Usuario usuario = UsuarioMapper.toEntity(request);
+
+        usuario.setActivo(true);
 
         Usuario guardado = usuarioRepository.save(usuario);
 
-        UsuarioResponse response = new UsuarioResponse();
-        response.setId(guardado.getId());
-        response.setNombre(guardado.getNombre());
-        response.setCorreo(guardado.getCorreo());
-        response.setNumero(guardado.getNumero());
-        response.setActivo(guardado.isActivo());
-
-        return response;
-
+        return UsuarioMapper.toResponse(guardado);
     }
 
     @Override
@@ -43,18 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         List<Usuario> usuarios = usuarioRepository.findAll();
 
-        List<UsuarioResponse> listaDTO = usuarios.stream()
-                .map(usuario -> {
-                    UsuarioResponse dto = new UsuarioResponse();
-                    dto.setId(usuario.getId());
-                    dto.setNombre(usuario.getNombre());
-                    dto.setCorreo(usuario.getCorreo());
-                    dto.setNumero(usuario.getNumero());
-                    dto.setActivo(usuario.isActivo());
-                    return dto;
-                }).toList();
-
-        return listaDTO;
+        return usuarios.stream()
+                .map(UsuarioMapper::toResponse)
+                .toList();
     }
 
     @Override
@@ -62,14 +44,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        UsuarioResponse dto = new UsuarioResponse();
-        dto.setId(usuario.getId());
-        dto.setNombre(usuario.getNombre());
-        dto.setCorreo(usuario.getCorreo());
-        dto.setNumero(usuario.getNumero());
-        dto.setActivo(usuario.isActivo());
+        return UsuarioMapper.toResponse(usuario);
 
-        return dto;
     }
 
     @Override
@@ -85,14 +61,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario guardado = usuarioRepository.save(usuario);
 
-        UsuarioResponse dto = new UsuarioResponse();
-        dto.setId(guardado.getId());
-        dto.setNombre(guardado.getNombre());
-        dto.setCorreo(guardado.getCorreo());
-        dto.setNumero(guardado.getNumero());
-        dto.setActivo(guardado.isActivo());
-
-        return dto;
+        return UsuarioMapper.toResponse(guardado);
     }
 
     @Override
@@ -107,13 +76,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setActivo(false);
         Usuario guardado = usuarioRepository.save(usuario);
 
-        UsuarioResponse dto = new UsuarioResponse();
-        dto.setId(guardado.getId());
-        dto.setNombre(guardado.getNombre());
-        dto.setCorreo(guardado.getCorreo());
-        dto.setNumero(guardado.getNumero());
-        dto.setActivo(guardado.isActivo());
-
-        return dto;
+        return UsuarioMapper.toResponse(guardado);
     }
 }
