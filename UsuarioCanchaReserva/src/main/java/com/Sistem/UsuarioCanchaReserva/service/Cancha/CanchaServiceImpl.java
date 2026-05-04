@@ -1,6 +1,9 @@
 package com.Sistem.UsuarioCanchaReserva.service.Cancha;
 
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
+import com.Sistem.UsuarioCanchaReserva.mappers.CanchaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +19,32 @@ public class CanchaServiceImpl implements CanchaService {
     }
 
     @Override
-    public Cancha crearCancha(Cancha cancha) {
-        return canchaRepository.save(cancha);
+    public CanchaResponse crearCancha(CanchaRequest cancha) {
+        Cancha guardado = CanchaMapper.toEntity(cancha);
+        canchaRepository.save(guardado);
+
+        return CanchaMapper.ResponseDtos(guardado);
     }
 
     @Override
-    public List<Cancha> listarCanchas() {
-        return canchaRepository.findAll();
+    public List<CanchaResponse> listarCanchas() {
+        List<Cancha> canchas = canchaRepository.findAll();
+
+        return canchas.stream()
+                .map(CanchaMapper::ResponseDtos)
+                .toList();
     }
 
     @Override
-    public Cancha listarPorId(Long id) {
-        return canchaRepository.findById(id)
+    public CanchaResponse listarPorId(Long id) {
+        Cancha cancha = canchaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cancha no encontrada"));
+
+        return CanchaMapper.ResponseDtos(cancha);
     }
 
     @Override
-    public Cancha actualizarPrecioH(Long id, Long nuevoPrecio) {
+    public CanchaResponse actualizarPrecioH(Long id, Long nuevoPrecio) {
         Cancha cancha = canchaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cancha no encontrada"));
 
@@ -41,16 +53,17 @@ public class CanchaServiceImpl implements CanchaService {
         }
 
         cancha.setPrecioxhora(nuevoPrecio);
-        return canchaRepository.save(cancha);
+
+        return CanchaMapper.ResponseDtos(cancha);
     }
 
     @Override
-    public Cancha cambiarDisponibilidad(Long id) {
+    public CanchaResponse cambiarDisponibilidad(Long id) {
         Cancha cancha = canchaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cancha no encontrada"));
 
         cancha.setDisponible(!cancha.isDisponible());
 
-        return canchaRepository.save(cancha);
+        return CanchaMapper.ResponseDtos(cancha);
     }
 }

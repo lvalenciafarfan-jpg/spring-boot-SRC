@@ -1,18 +1,20 @@
 package com.Sistem.UsuarioCanchaReserva.service.Cancha;
 
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 
 import java.util.List;
 
 public interface CanchaService {
 
-    Cancha crearCancha(Cancha cancha);
+    CanchaResponse crearCancha(CanchaRequest cancha);
 
-    List<Cancha> listarCanchas();
+    List<CanchaResponse> listarCanchas();
 
-    Cancha listarPorId(Long id);
+    CanchaResponse listarPorId(Long id);
 
-    Cancha actualizarPrecioH(Long id, Long nuevoPrecio);
+    CanchaResponse actualizarPrecioH(Long id, Long nuevoPrecio);
 
-    Cancha cambiarDisponibilidad(Long id);
+    CanchaResponse cambiarDisponibilidad(Long id);
 }

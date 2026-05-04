@@ -1,5 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.controller;
 
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.service.Cancha.CanchaService;
 
@@ -19,22 +21,22 @@ public class CanchaController {
     }
 
     @PostMapping
-    public ResponseEntity<Cancha> crear(@RequestBody Cancha cancha){
+    public ResponseEntity<CanchaResponse> crear(@RequestBody CanchaRequest cancha){
         return ResponseEntity.ok(canchaService.crearCancha(cancha));
     }
 
     @GetMapping
-    public ResponseEntity<List<Cancha>> listar(){
+    public ResponseEntity<List<CanchaResponse>> listar(){
         return ResponseEntity.ok(canchaService.listarCanchas());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cancha> obtener(@PathVariable Long id){
+    public ResponseEntity<CanchaResponse> obtener(@PathVariable Long id){
         return ResponseEntity.ok(canchaService.listarPorId(id));
     }
 
     @PutMapping("/{id}/precio")
-    public ResponseEntity<Cancha> actualizarPrecio(
+    public ResponseEntity<CanchaResponse> actualizarPrecio(
             @PathVariable Long id,
             @RequestParam Long nuevoPrecio
     ){
@@ -42,7 +44,7 @@ public class CanchaController {
     }
 
     @PutMapping("/{id}/disponibilidad")
-    public ResponseEntity<Cancha> cambiarDisponibilidad(@PathVariable Long id){
+    public ResponseEntity<CanchaResponse> cambiarDisponibilidad(@PathVariable Long id){
         return ResponseEntity.ok(canchaService.cambiarDisponibilidad(id));
     }
 }
