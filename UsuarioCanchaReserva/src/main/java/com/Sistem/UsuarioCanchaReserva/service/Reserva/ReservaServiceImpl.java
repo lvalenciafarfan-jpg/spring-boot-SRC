@@ -1,9 +1,12 @@
 package com.Sistem.UsuarioCanchaReserva.service.Reserva;
 
 import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
+import com.Sistem.UsuarioCanchaReserva.mappers.ReservaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.ReservaRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.UsuarioRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
@@ -11,7 +14,7 @@ import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ReservaServiceImpl implements ReservaService {
@@ -31,17 +34,16 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public Reserva crearReserva(Reserva reserva){
+    public ReservaResponse crearReserva(ReservaRequest reserva){
 
-        Usuario usuario = usuarioRepository.findById(reserva.getUsuario().getId())
+        Usuario usuario = usuarioRepository.findById(reserva.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuario no existe"));
 
-        if (!usuario.isActivo()) {
-            throw new RuntimeException("Usuario inactivo");
+        if(!usuario.isActivo()){
+            throw new RuntimeException("El usuario esta inactivo");
         }
 
-
-        Cancha cancha = canchaRepository.findById(reserva.getCancha().getId())
+        Cancha cancha = canchaRepository.findById(reserva.getCanchaId())
                 .orElseThrow(() -> new RuntimeException("Cancha no existe"));
 
 
@@ -64,25 +66,35 @@ public class ReservaServiceImpl implements ReservaService {
             throw new RuntimeException("La cancha ya está reservada en ese horario");
         }
 
-        reserva.setEstado(EstadoReserva.ACTIVA);
+        Reserva guardado = ReservaMapper.toEntity(reserva);
 
-        Reserva guardada = reservaRepository.save(reserva);
+        guardado.setUsuario(usuario);
+        guardado.setCancha(cancha);
 
-        return reservaRepository.findById(guardada.getId()).get();
+        Reserva guardada = reservaRepository.save(guardado);
+
+        return ReservaMapper.toResponse(guardada);
+
     }
 
     @Override
-    public List<Reserva> listarReservas() {
-        return reservaRepository.findAll();
+    public List<ReservaResponse> listarReservas() {
+
+        List<Reserva> reservas = reservaRepository.findAll();
+
+        return reservas.stream().map(ReservaMapper::toResponse).toList();
     }
 
     @Override
-    public Optional<Reserva> listarPorId(Long id) {
-        return reservaRepository.findById(id);
+    public ReservaResponse listarPorId(Long id) {
+        Reserva reserva = reservaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
+
+        return ReservaMapper.toResponse(reserva);
     }
 
     @Override
-    public Reserva cancelarReserva(Long id) {
+    public ReservaResponse cancelarReserva(Long id) {
         Reserva reserva = reservaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
 
@@ -92,7 +104,9 @@ public class ReservaServiceImpl implements ReservaService {
 
         reserva.setEstado(EstadoReserva.CANCELADA);
 
-        return reservaRepository.save(reserva);
+        Reserva guard = reservaRepository.save(reserva);
+
+        return ReservaMapper.toResponse(guard);
     }
 }
 

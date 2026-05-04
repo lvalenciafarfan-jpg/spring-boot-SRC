@@ -1,5 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.controller;
 
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import com.Sistem.UsuarioCanchaReserva.service.Reserva.ReservaService;
 
@@ -19,34 +21,27 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody Reserva reserva){
-        try {
-            return ResponseEntity.ok(reservaService.crearReserva(reserva));
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<ReservaResponse> crear(@RequestBody ReservaRequest reserva){
+        ReservaResponse response = reservaService.crearReserva(reserva);
+        return ResponseEntity.ok(response);
     }
 
 
     @GetMapping
-    public ResponseEntity<List<Reserva>> listar(){
+    public ResponseEntity<List<ReservaResponse>> listar(){
         return ResponseEntity.ok(reservaService.listarReservas());
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reserva> obtener(@PathVariable Long id){
-        return reservaService.listarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ReservaResponse> obtener(@PathVariable Long id){
+        ReservaResponse response = reservaService.listarPorId(id);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}/cancelar")
-    public ResponseEntity<?> cancelar(@PathVariable Long id){
-        try {
-            return ResponseEntity.ok(reservaService.cancelarReserva(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<ReservaResponse> cancelar(@PathVariable Long id){
+        ReservaResponse response = reservaService.cancelarReserva(id);
+        return ResponseEntity.ok(response);
     }
 }

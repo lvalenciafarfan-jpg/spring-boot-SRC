@@ -1,7 +1,7 @@
 package com.Sistem.UsuarioCanchaReserva.entities;
 
 import com.Sistem.UsuarioCanchaReserva.EstadoReserva;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
@@ -26,7 +26,7 @@ public class Reserva{
     private Long id;
 
     @NotNull
-    private LocalDateTime fecha;
+    private LocalDate fecha;
 
     @NotNull
     private LocalTime horaInicio;

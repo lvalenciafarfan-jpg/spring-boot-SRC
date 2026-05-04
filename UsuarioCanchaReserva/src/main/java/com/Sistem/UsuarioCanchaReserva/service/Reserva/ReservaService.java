@@ -1,15 +1,17 @@
 package com.Sistem.UsuarioCanchaReserva.service.Reserva;
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaRequest;
+import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import java.util.List;
 import java.util.Optional;
 
 public interface ReservaService {
 
-    Reserva crearReserva(Reserva reserva);
+    ReservaResponse crearReserva(ReservaRequest reserva);
 
-    List<Reserva> listarReservas();
+    List<ReservaResponse> listarReservas();
 
-    Optional<Reserva> listarPorId(Long id);
+    ReservaResponse listarPorId(Long id);
 
-    Reserva cancelarReserva(Long id);
+    ReservaResponse cancelarReserva(Long id);
 }
