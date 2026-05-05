@@ -5,6 +5,7 @@ import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
 import com.Sistem.UsuarioCanchaReserva.service.Reserva.ReservaService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<ReservaResponse> crear(@RequestBody ReservaRequest reserva){
+    public ResponseEntity<ReservaResponse> crear(@Valid @RequestBody ReservaRequest reserva){
         ReservaResponse response = reservaService.crearReserva(reserva);
         return ResponseEntity.ok(response);
     }

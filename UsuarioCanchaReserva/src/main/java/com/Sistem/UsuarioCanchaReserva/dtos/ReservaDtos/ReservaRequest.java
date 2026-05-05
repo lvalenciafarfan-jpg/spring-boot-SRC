@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Data
 public class ReservaRequest {
     @NotNull(message = "La fecha es obligatoria")
-    @Future
+    @Future(message = "La fecha debe ser futura")
     private LocalDate fecha;
     @NotNull(message = "La hora de inicio es obligatoria")
     private LocalTime horaInicio;

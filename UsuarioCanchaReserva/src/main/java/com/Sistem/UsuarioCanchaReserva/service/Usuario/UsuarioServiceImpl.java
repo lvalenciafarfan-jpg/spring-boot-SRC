@@ -4,7 +4,6 @@ import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoException;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
 import com.Sistem.UsuarioCanchaReserva.mappers.UsuarioMapper;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
@@ -27,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioResponse crearUsuario(@Valid UsuarioRequest request){
+    public UsuarioResponse crearUsuario(UsuarioRequest request){
         Usuario usuario = UsuarioMapper.toEntity(request);
 
         usuario.setActivo(true);

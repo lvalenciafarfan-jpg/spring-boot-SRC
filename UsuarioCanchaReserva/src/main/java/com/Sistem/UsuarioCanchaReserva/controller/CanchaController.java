@@ -5,6 +5,7 @@ import com.Sistem.UsuarioCanchaReserva.dtos.CanchaDtos.CanchaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.service.Cancha.CanchaService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class CanchaController {
     }
 
     @PostMapping
-    public ResponseEntity<CanchaResponse> crear(@RequestBody CanchaRequest cancha){
+    public ResponseEntity<CanchaResponse> crear(@Valid @RequestBody CanchaRequest cancha){
         return ResponseEntity.ok(canchaService.crearCancha(cancha));
     }
 

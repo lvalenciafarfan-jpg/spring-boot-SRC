@@ -7,7 +7,6 @@ import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoExce
 import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
 import com.Sistem.UsuarioCanchaReserva.mappers.CanchaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class CanchaServiceImpl implements CanchaService {
     }
 
     @Override
-    public CanchaResponse crearCancha(@Valid CanchaRequest cancha) {
+    public CanchaResponse crearCancha(CanchaRequest cancha) {
         Cancha guardado = CanchaMapper.toEntity(cancha);
         canchaRepository.save(guardado);
 

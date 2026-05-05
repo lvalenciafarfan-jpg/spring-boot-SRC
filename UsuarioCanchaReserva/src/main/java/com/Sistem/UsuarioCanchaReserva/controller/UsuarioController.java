@@ -4,6 +4,7 @@ import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.service.Usuario.UsuarioService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> crear(@RequestBody UsuarioRequest usuario){
+    public ResponseEntity<UsuarioResponse> crear(@Valid @RequestBody UsuarioRequest usuario){
         return ResponseEntity.ok(usuarioService.crearUsuario(usuario));
     }
 

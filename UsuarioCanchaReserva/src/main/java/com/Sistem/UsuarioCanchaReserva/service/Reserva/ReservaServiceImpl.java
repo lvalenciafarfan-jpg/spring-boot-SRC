@@ -12,7 +12,6 @@ import com.Sistem.UsuarioCanchaReserva.mappers.ReservaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.ReservaRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.UsuarioRepository;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class ReservaServiceImpl implements ReservaService {
                 );
     }
     @Override
-    public ReservaResponse crearReserva(@Valid ReservaRequest reserva){
+    public ReservaResponse crearReserva(ReservaRequest reserva){
         Usuario usuario = obtenerUsuario(reserva.getUsuarioId());
 
         if(!usuario.isActivo()){
