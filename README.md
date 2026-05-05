@@ -67,6 +67,6 @@ El proyecto sigue arquitectura por capas:
 - [x] CRUD completo de Usuarios, Canchas y Reservas
 - [x] Validación de conflictos de horario
 - [x] Manejo global de errores (@RestControllerAdvice)
-- [x] Validaciones en DTOs con @Valid (en progreso)
+- [x] Validaciones en DTOs con @Valid
 - [ ] Spring Security + JWT (en progreso)
 - [ ] Tests unitarios (en progreso)
