@@ -1,5 +1,4 @@
 package com.Sistem.UsuarioCanchaReserva.service.Usuario;
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoException;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
@@ -25,16 +24,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 new RecursoNoEncontradoException("El usuario con id: " + id + " no ha sido encontrado"));
     }
 
-    @Override
-    public UsuarioResponse crearUsuario(UsuarioRequest request){
-        Usuario usuario = UsuarioMapper.toEntity(request);
-
-        usuario.setActivo(true);
-
-        Usuario guardado = usuarioRepository.save(usuario);
-
-        return UsuarioMapper.toResponse(guardado);
-    }
 
     @Override
     public List<UsuarioResponse> listarUsuarios(){

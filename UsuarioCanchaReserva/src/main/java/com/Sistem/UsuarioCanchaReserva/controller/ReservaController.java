@@ -3,10 +3,12 @@ package com.Sistem.UsuarioCanchaReserva.controller;
 import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.ReservaDtos.ReservaResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Reserva;
+import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 import com.Sistem.UsuarioCanchaReserva.service.Reserva.ReservaService;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,14 +31,14 @@ public class ReservaController {
 
 
     @GetMapping
-    public ResponseEntity<List<ReservaResponse>> listar(){
-        return ResponseEntity.ok(reservaService.listarReservas());
+    public ResponseEntity<List<ReservaResponse>> listar(@AuthenticationPrincipal Usuario usuario){
+        return ResponseEntity.ok(reservaService.listarReservas(usuario));
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ReservaResponse> obtener(@PathVariable Long id){
-        ReservaResponse response = reservaService.listarPorId(id);
+    public ResponseEntity<ReservaResponse> obtener(@PathVariable Long id, @AuthenticationPrincipal Usuario usuario){
+        ReservaResponse response = reservaService.listarPorId(id, usuario);
         return ResponseEntity.ok(response);
     }
 

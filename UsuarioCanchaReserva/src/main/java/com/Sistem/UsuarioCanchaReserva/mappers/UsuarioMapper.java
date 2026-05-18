@@ -1,6 +1,5 @@
 package com.Sistem.UsuarioCanchaReserva.mappers;
 
-import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioRequest;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
 
@@ -16,13 +15,4 @@ public class UsuarioMapper {
         return user;
     }
 
-    public static Usuario toEntity(UsuarioRequest datos){
-        Usuario user = new Usuario();
-        user.setCorreo(datos.getCorreo());
-        user.setNumero(datos.getNumero());
-        user.setNombre(datos.getNombre());
-        user.setActivo(datos.isActivo());
-
-        return user;
-    }
 }

@@ -94,16 +94,21 @@ public class ReservaServiceImpl implements ReservaService {
     }
 
     @Override
-    public List<ReservaResponse> listarReservas() {
-
-        List<Reserva> reservas = reservaRepository.findAll();
-
-        return reservas.stream().map(ReservaMapper::toResponse).toList();
+    public List<ReservaResponse> listarReservas(Usuario usuario) {
+        return reservaRepository.findByUsuario(usuario)
+                .stream()
+                .map(ReservaMapper::toResponse)
+                .toList();
     }
 
     @Override
-    public ReservaResponse listarPorId(Long id) {
+    public ReservaResponse listarPorId(Long id, Usuario usuario) {
         Reserva reserva = obtenerReserva(id);
+
+        // Si la reserva existe pero es de otro usuario → error
+        if (!reserva.getUsuario().getId().equals(usuario.getId())) {
+            throw new ReglaNegocioException("No tienes acceso a esta reserva");
+        }
 
         return ReservaMapper.toResponse(reserva);
     }
