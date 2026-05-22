@@ -38,6 +38,7 @@ public class Usuario implements UserDetails {
     private boolean activo;
 
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Rol rol;
 

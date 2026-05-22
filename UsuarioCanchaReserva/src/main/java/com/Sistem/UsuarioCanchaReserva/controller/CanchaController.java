@@ -6,6 +6,10 @@ import com.Sistem.UsuarioCanchaReserva.entities.Cancha;
 import com.Sistem.UsuarioCanchaReserva.service.Cancha.CanchaService;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +31,9 @@ public class CanchaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CanchaResponse>> listar(){
-        return ResponseEntity.ok(canchaService.listarCanchas());
+    public ResponseEntity<Page<CanchaResponse>> listar(
+            @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        return ResponseEntity.ok(canchaService.listarCanchas(pageable));
     }
 
     @GetMapping("/{id}")

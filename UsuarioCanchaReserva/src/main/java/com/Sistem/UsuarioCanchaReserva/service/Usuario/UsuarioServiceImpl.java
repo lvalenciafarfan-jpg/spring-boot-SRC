@@ -3,6 +3,8 @@ import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoException;
 import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
 import com.Sistem.UsuarioCanchaReserva.mappers.UsuarioMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.Sistem.UsuarioCanchaReserva.entities.Usuario;
@@ -26,13 +28,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     @Override
-    public List<UsuarioResponse> listarUsuarios(){
-
-        List<Usuario> usuarios = usuarioRepository.findAll();
-
-        return usuarios.stream()
-                .map(UsuarioMapper::toResponse)
-                .toList();
+    public Page<UsuarioResponse> listarUsuarios(Pageable pageable){
+        return usuarioRepository.findAll(pageable)
+                .map(UsuarioMapper::toResponse);
     }
 
     @Override

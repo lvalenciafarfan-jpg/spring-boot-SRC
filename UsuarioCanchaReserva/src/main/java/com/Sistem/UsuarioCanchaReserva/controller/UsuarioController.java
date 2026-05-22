@@ -3,6 +3,10 @@ package com.Sistem.UsuarioCanchaReserva.controller;
 import com.Sistem.UsuarioCanchaReserva.dtos.UsuarioDtos.UsuarioResponse;
 import com.Sistem.UsuarioCanchaReserva.service.Usuario.UsuarioService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +23,10 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioResponse>> listar(){
+    public ResponseEntity<Page<UsuarioResponse>> listar(
+            @PageableDefault (size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
-        return ResponseEntity.ok(usuarioService.listarUsuarios());
+        return ResponseEntity.ok(usuarioService.listarUsuarios(pageable));
     }
 
     @GetMapping("/{id}")

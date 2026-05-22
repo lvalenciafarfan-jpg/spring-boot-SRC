@@ -7,6 +7,8 @@ import com.Sistem.UsuarioCanchaReserva.exception.customs.RecursoNoEncontradoExce
 import com.Sistem.UsuarioCanchaReserva.exception.customs.ReglaNegocioException;
 import com.Sistem.UsuarioCanchaReserva.mappers.CanchaMapper;
 import com.Sistem.UsuarioCanchaReserva.repository.CanchaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,12 +38,9 @@ public class CanchaServiceImpl implements CanchaService {
     }
 
     @Override
-    public List<CanchaResponse> listarCanchas() {
-        List<Cancha> canchas = canchaRepository.findAll();
-
-        return canchas.stream()
-                .map(CanchaMapper::toResponse)
-                .toList();
+    public Page<CanchaResponse> listarCanchas(Pageable pageable) {
+        return canchaRepository.findAll(pageable)
+                .map(CanchaMapper::toResponse);
     }
 
     @Override
